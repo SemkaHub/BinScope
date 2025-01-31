@@ -1,6 +1,12 @@
-package com.example.binscope.domain.model
+package com.example.binscope.data.local.entity
 
-data class CardData(
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "cards")
+data class CardEntity(
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
     val bin: String,
     val scheme: String,
     val type: String,

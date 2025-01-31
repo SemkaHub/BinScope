@@ -58,4 +58,6 @@ dependencies {
     implementation(libs.room.ktx)
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.fragment.ktx)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 }
