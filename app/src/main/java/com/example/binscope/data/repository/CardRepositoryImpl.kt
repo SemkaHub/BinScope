@@ -14,14 +14,10 @@ class CardRepositoryImpl @Inject constructor(
 ) : CardRepository {
 
     override suspend fun getCardByBin(bin: String): CardData {
-        return try {
-            val card = apiService.getCardByBin(bin)
-            val entity = card.toEntity(bin)
-            cardDao.insertCard(entity)
-            entity.toDomain()
-        } catch (e: Exception) {
-            throw Exception("Error fetching card data. Message: ${e.message}")
-        }
+        val card = apiService.getCardByBin(bin)
+        val entity = card.toEntity(bin)
+        cardDao.insertCard(entity)
+        return entity.toDomain()
     }
 
     override suspend fun getHistory(): List<CardData> =

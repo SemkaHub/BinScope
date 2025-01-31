@@ -116,14 +116,15 @@
         android:visibility="gone">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/error_image_size"
+            android:layout_height="@dimen/error_image_size"
             android:src="@drawable/error_24px" />
 
         <TextView
             android:id="@+id/errorTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            tools:text="errorTextView"
             android:layout_marginTop="@dimen/margin_medium"
             android:textSize="@dimen/text_title" />
 

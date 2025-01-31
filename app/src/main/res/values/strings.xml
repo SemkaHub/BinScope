@@ -6,7 +6,7 @@
     <string name="scheme">Scheme: %1$s</string>
     <string name="type">Type: %1$s</string>
     <string name="brand">Brand: %1$s</string>
-    <string name="prepaid">Prepaid: %1$s</string>
+    <string name="prepaid">Prepaid: %1$b</string>
     <string name="country">Country: %1$s (latitude: %2$s, longitude: %3$s)</string>
 
     <string name="bank_information">Bank information</string>
@@ -16,4 +16,9 @@
     <string name="bank_city">City: %1$s</string>
 
     <string name="retry">Retry</string>
+
+    <string name="network_error_message">Network error</string>
+    <string name="server_error_message">Server error</string>
+    <string name="validation_error_message">BIN must be 6 to 8 digits</string>
+    <string name="unknown_error_message">Unknown error</string>
 </resources>

@@ -29,7 +29,7 @@ internal fun CardResponseDto.toEntity(bin: String) = CardEntity(
     latitude = this.country.latitude.toString(),
     longitude = this.country.longitude.toString(),
     bankName = this.bank.name,
-    bankUrl = this.bank.url,
-    bankPhone = this.bank.phone,
-    bankCity = this.bank.city
+    bankUrl = this.bank.url.toString(),
+    bankPhone = this.bank.phone.toString(),
+    bankCity = this.bank.city.toString()
 )
