@@ -21,4 +21,6 @@
     <string name="server_error_message">Server error</string>
     <string name="validation_error_message">BIN must be 6 to 8 digits</string>
     <string name="unknown_error_message">Unknown error</string>
+
+    <string name="no_data">no data</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.example.binscope.presentation.ui.fragment
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -85,6 +87,8 @@ class DetailsFragment : Fragment() {
         binding.bankCityTextView.text = getString(R.string.bank_city, card.bankCity)
         binding.bankUrlTextView.text = getString(R.string.bank_url, card.bankUrl)
         binding.bankPhoneTextView.text = getString(R.string.bank_phone, card.bankPhone)
+
+        setUpListeners(card)
     }
 
     private fun showError(error: AppError) {
@@ -106,6 +110,43 @@ class DetailsFragment : Fragment() {
 
             else -> binding.errorState.visibility = View.GONE
         }
+    }
+
+    private fun setUpListeners(card: CardData) {
+        if (card.bankUrl != getString(R.string.no_data)) {
+            binding.bankUrlTextView.setOnClickListener {
+                openLink(card.bankUrl)
+            }
+        }
+
+        if (card.bankPhone != getString(R.string.no_data)) {
+            binding.bankPhoneTextView.setOnClickListener {
+                openTelephone(card.bankPhone)
+            }
+        }
+
+        if (card.latitude != getString(R.string.no_data) &&
+            card.longitude != getString(R.string.no_data)
+        ) {
+            binding.countryTextView.setOnClickListener {
+                openMap(card.latitude, card.longitude)
+            }
+        }
+    }
+
+    private fun openLink(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(intent)
+    }
+
+    private fun openTelephone(phone: String) {
+        val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phone"))
+        startActivity(intent)
+    }
+
+    private fun openMap(latitude: String, longitude: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:$latitude,$longitude"))
+        startActivity(intent)
     }
 
     override fun onDestroyView() {
