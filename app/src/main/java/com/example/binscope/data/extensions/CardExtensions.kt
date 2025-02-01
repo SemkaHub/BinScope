@@ -4,6 +4,8 @@ import com.example.binscope.data.local.entity.CardEntity
 import com.example.binscope.data.remote.dto.CardResponseDto
 import com.example.binscope.domain.model.CardData
 
+internal const val NO_DATA_VALUE = "no data"
+
 internal fun CardEntity.toDomain() = CardData(
     bin = this.bin,
     scheme = this.scheme,
@@ -28,8 +30,8 @@ internal fun CardResponseDto.toEntity(bin: String) = CardEntity(
     countryName = this.country.name,
     latitude = this.country.latitude.toString(),
     longitude = this.country.longitude.toString(),
-    bankName = this.bank.name,
-    bankUrl = this.bank.url.toString(),
-    bankPhone = this.bank.phone.toString(),
-    bankCity = this.bank.city.toString()
+    bankName = this.bank.name?.toString() ?: NO_DATA_VALUE,
+    bankUrl = this.bank.url?.toString() ?: NO_DATA_VALUE,
+    bankPhone = this.bank.phone?.toString() ?: NO_DATA_VALUE,
+    bankCity = this.bank.city?.toString() ?: NO_DATA_VALUE
 )

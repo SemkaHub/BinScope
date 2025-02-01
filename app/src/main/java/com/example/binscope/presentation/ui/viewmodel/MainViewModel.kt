@@ -24,12 +24,16 @@ class MainViewModel @Inject constructor(
     private var _state = MutableStateFlow<UiState>(UiState.Empty)
     val state: StateFlow<UiState> = _state
 
+    private var lastBin: String? = null
+
     fun loadCard(bin: String) {
+        lastBin = bin
         if (!validateBinUseCase.invoke(bin)) {
             // Время добавлено в качестве метки, чтобы состоянии валидации всегда обновлялось
             _state.value = UiState.Error(AppError.ValidationError(System.currentTimeMillis()))
             return
         }
+
         viewModelScope.launch {
             _state.value = UiState.Loading
             try {
@@ -44,5 +48,9 @@ class MainViewModel @Inject constructor(
                 _state.value = UiState.Error(AppError.UnknownError)
             }
         }
+    }
+
+    fun retry() {
+        lastBin?.let { loadCard(it) }
     }
 }

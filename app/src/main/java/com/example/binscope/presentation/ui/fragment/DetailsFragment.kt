@@ -92,7 +92,7 @@ class DetailsFragment : Fragment() {
         binding.detailsContainer.visibility = View.GONE
         binding.errorState.visibility = View.VISIBLE
         binding.retryButton.setOnClickListener {
-            // TODO: Добавить логику повторной загрузки
+            viewModel.retry()
         }
         when (error) {
             is AppError.NetworkError -> binding.errorTextView.text =
