@@ -24,7 +24,7 @@ object RoomModule {
             AppDatabase::class.java,
             "app-database"
         )
-            .fallbackToDestructiveMigrationOnDowngrade()
+            .fallbackToDestructiveMigration()
             .build()
     }
 

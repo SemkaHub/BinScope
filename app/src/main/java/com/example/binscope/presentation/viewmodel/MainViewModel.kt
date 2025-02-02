@@ -1,8 +1,9 @@
-package com.example.binscope.presentation.ui.viewmodel
+package com.example.binscope.presentation.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.binscope.domain.model.CardData
 import com.example.binscope.domain.usecase.GetCardByBinUseCase
 import com.example.binscope.domain.usecase.ValidateBinUseCase
 import com.example.binscope.presentation.state.AppError
@@ -21,8 +22,8 @@ class MainViewModel @Inject constructor(
     private val validateBinUseCase: ValidateBinUseCase
 ) : ViewModel() {
 
-    private var _state = MutableStateFlow<UiState>(UiState.Empty)
-    val state: StateFlow<UiState> = _state
+    private var _state = MutableStateFlow<UiState<CardData>>(UiState.Empty)
+    val state: StateFlow<UiState<CardData>> = _state
 
     private var lastBin: String? = null
 
@@ -39,9 +40,11 @@ class MainViewModel @Inject constructor(
             try {
                 val card = getCardByBinUseCase.invoke(bin)
                 _state.value = UiState.Success(card)
-            } catch (_: IOException) {
+            } catch (e: IOException) {
+                Log.e("MainViewModel", e.message, e)
                 _state.value = UiState.Error(AppError.NetworkError)
-            } catch (_: HttpException) {
+            } catch (e: HttpException) {
+                Log.e("MainViewModel", e.message, e)
                 _state.value = UiState.Error(AppError.ServerError)
             } catch (e: Exception) {
                 Log.e("MainViewModel", e.message, e)

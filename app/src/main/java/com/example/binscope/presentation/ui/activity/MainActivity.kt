@@ -3,6 +3,8 @@ package com.example.binscope.presentation.ui.activity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +18,7 @@ import com.example.binscope.databinding.ActivityMainBinding
 import com.example.binscope.presentation.state.AppError
 import com.example.binscope.presentation.state.UiState
 import com.example.binscope.presentation.ui.fragment.DetailsFragment
-import com.example.binscope.presentation.ui.viewmodel.MainViewModel
+import com.example.binscope.presentation.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -34,6 +36,22 @@ class MainActivity : AppCompatActivity() {
         setWindowInsetsListener()
         addFragment()
         setupEditText()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.history_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.history_item -> {
+                startActivity(HistoryActivity.newIntent(this))
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun setWindowInsetsListener() {

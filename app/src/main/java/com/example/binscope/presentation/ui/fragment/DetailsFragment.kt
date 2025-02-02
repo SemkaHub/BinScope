@@ -16,7 +16,7 @@ import com.example.binscope.databinding.DetailsFragmentBinding
 import com.example.binscope.domain.model.CardData
 import com.example.binscope.presentation.state.AppError
 import com.example.binscope.presentation.state.UiState
-import com.example.binscope.presentation.ui.viewmodel.MainViewModel
+import com.example.binscope.presentation.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -49,7 +49,7 @@ class DetailsFragment : Fragment() {
                     when (state) {
                         is UiState.Empty -> showEmpty()
                         is UiState.Loading -> showLoading()
-                        is UiState.Success -> showContent(state.card)
+                        is UiState.Success -> showContent(state.data)
                         is UiState.Error -> showError(state.error)
                     }
                 }
@@ -76,7 +76,7 @@ class DetailsFragment : Fragment() {
         showCardData(card)
     }
 
-    private fun showCardData(card: CardData) {
+    fun showCardData(card: CardData) {
         binding.schemeTextView.text = getString(R.string.scheme, card.scheme)
         binding.typeTextView.text = getString(R.string.type, card.type)
         binding.brandTextView.text = getString(R.string.brand, card.brand)

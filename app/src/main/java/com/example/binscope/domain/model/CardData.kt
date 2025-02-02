@@ -1,6 +1,11 @@
 package com.example.binscope.domain.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class CardData(
+    val timestamp: Long,
     val bin: String,
     val scheme: String,
     val type: String,
@@ -13,4 +18,4 @@ data class CardData(
     val bankUrl: String,
     val bankPhone: String,
     val bankCity: String
-)
+) : Parcelable

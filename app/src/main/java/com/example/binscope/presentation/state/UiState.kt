@@ -1,10 +1,8 @@
 package com.example.binscope.presentation.state
 
-import com.example.binscope.domain.model.CardData
-
-sealed class UiState {
-    object Loading : UiState()
-    object Empty : UiState()
-    data class Success(val card: CardData) : UiState()
-    data class Error(val error: AppError) : UiState()
+sealed class UiState<out T> {
+    object Loading : UiState<Nothing>()
+    object Empty : UiState<Nothing>()
+    data class Success<T>(val data: T) : UiState<T>()
+    data class Error(val error: AppError) : UiState<Nothing>()
 }

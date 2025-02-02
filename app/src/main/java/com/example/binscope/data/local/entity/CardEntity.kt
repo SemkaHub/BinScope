@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 data class CardEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
+    val timestamp: Long = System.currentTimeMillis(),
     val bin: String,
     val scheme: String,
     val type: String,

@@ -7,6 +7,7 @@ import com.example.binscope.domain.model.CardData
 internal const val NO_DATA_VALUE = "no data"
 
 internal fun CardEntity.toDomain() = CardData(
+    timestamp = this.timestamp,
     bin = this.bin,
     scheme = this.scheme,
     type = this.type,
@@ -23,9 +24,9 @@ internal fun CardEntity.toDomain() = CardData(
 
 internal fun CardResponseDto.toEntity(bin: String) = CardEntity(
     bin = bin,
-    scheme = this.scheme,
-    type = this.type,
-    brand = this.brand,
+    scheme = this.scheme?.toString() ?: NO_DATA_VALUE,
+    type = this.type?.toString() ?: NO_DATA_VALUE,
+    brand = this.brand?.toString() ?: NO_DATA_VALUE,
     prepaid = this.prepaid,
     countryName = this.country.name,
     latitude = this.country.latitude.toString(),

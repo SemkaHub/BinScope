@@ -23,4 +23,8 @@
     <string name="unknown_error_message">Unknown error</string>
 
     <string name="no_data">no data</string>
+
+    <string name="history_hint">History</string>
+    <string name="empty_history">History is empty</string>
+    <string name="back_to_main">Back to main</string>
 </resources>
