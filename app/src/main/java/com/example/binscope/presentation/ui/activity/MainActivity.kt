@@ -3,6 +3,7 @@ package com.example.binscope.presentation.ui.activity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
@@ -72,6 +73,14 @@ class MainActivity : AppCompatActivity() {
         binding.binTextInputLayout.setEndIconOnClickListener {
             val bin = binding.binEditText.text.toString()
             viewModel.loadCard(bin)
+        }
+
+        binding.binEditText.setOnKeyListener { _, keyCode, keyEvent ->
+            if (keyEvent.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                val bin = binding.binEditText.text.toString()
+                viewModel.loadCard(bin)
+                return@setOnKeyListener true
+            } else false
         }
 
         binding.binEditText.addTextChangedListener(object : TextWatcher {
